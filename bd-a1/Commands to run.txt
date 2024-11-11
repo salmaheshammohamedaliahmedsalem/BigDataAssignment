@@ -1,0 +1,30 @@
+docker build -t bd-a1-image -f "C:\Users\Salma\Desktop\bd-a1\dockerfile" .
+
+docker run --name bd-a1-container bd-a1-image
+
+docker start -i bd-a1-container
+
+cd /home/doc-bd-a1/
+
+python3 load.py /home/doc-bd-a1/iris.csv
+
+python3 dpre.py
+
+python3 eda.py
+
+python3 vis.py
+
+python3 model.py
+
+ls /home/doc-bd-a1/
+
+docker cp bd-a1-container:/home/doc-bd-a1/res_dpre.csv C:\Users\Salma\Desktop\bd-a1\res\
+docker cp bd-a1-container:/home/doc-bd-a1/eda-in-1.txt C:\Users\Salma\Desktop\bd-a1\res\
+docker cp bd-a1-container:/home/doc-bd-a1/eda-in-2.txt C:\Users\Salma\Desktop\bd-a1\res\
+docker cp bd-a1-container:/home/doc-bd-a1/eda-in-3.txt C:\Users\Salma\Desktop\bd-a1\res\
+docker cp bd-a1-container:/home/doc-bd-a1/vis.png C:\Users\Salma\Desktop\bd-a1\res\
+docker cp bd-a1-container:/home/doc-bd-a1/k.txt C:\Users\Salma\Desktop\bd-a1\res\
+
+>docker tag bd-a1-image salmaheshamsalem123/bd-a1-image
+
+docker push salmaheshamsalem123/bd-a1-image
